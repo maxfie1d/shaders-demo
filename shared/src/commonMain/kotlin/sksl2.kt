@@ -55,25 +55,25 @@ const val sksl2 = """
         return mix(d2, d1 , h) - k * h * ( 1.0 - h);
     }
     
-    float sdCloud(in vec2 p, in vec2 a1, in vec2 b1, in vec2 a2, in vec2 b2, float w)
-    {
-        //float lineVal1 = smoothstep(w - 0.0001, w, sdLine(p, a1, b1));
-        float lineVal1 = sdLine(p, a1, b1);
-        float lineVal2 = sdLine(p, a2, b2);
-        vec2 ww = vec2(w*1.5, 0.0);
-        vec2 left = max(a1 + ww, a2 + ww);
-        vec2 right = min(b1 - ww, b2 - ww);
-        vec2 boxCenter = (left + right) * 0.5;
-        //float boxW = right.x - left.x;
-        float boxH = abs(a2.y - a1.y) * 0.5;
-        //float boxVal = sdBox(p - boxCenter, vec2(boxW, boxH)) + w;
-        float boxVal = sdBox(p - boxCenter, vec2(0.04, boxH)) + w;
-        
-        float uniVal1 = opSmoothUnion(lineVal1, boxVal, 0.05);
-        float uniVal2 = opSmoothUnion(lineVal2, boxVal, 0.05);
-        
-        return min(uniVal1, uniVal2);
-    }
+//    float sdCloud(in vec2 p, in vec2 a1, in vec2 b1, in vec2 a2, in vec2 b2, float w)
+//    {
+//        //float lineVal1 = smoothstep(w - 0.0001, w, sdLine(p, a1, b1));
+//        float lineVal1 = sdLine(p, a1, b1);
+//        float lineVal2 = sdLine(p, a2, b2);
+//        vec2 ww = vec2(w*1.5, 0.0);
+//        vec2 left = max(a1 + ww, a2 + ww);
+//        vec2 right = min(b1 - ww, b2 - ww);
+//        vec2 boxCenter = (left + right) * 0.5;
+//        //float boxW = right.x - left.x;
+//        float boxH = abs(a2.y - a1.y) * 0.5;
+//        //float boxVal = sdBox(p - boxCenter, vec2(boxW, boxH)) + w;
+//        float boxVal = sdBox(p - boxCenter, vec2(0.04, boxH)) + w;
+//        
+//        float uniVal1 = opSmoothUnion(lineVal1, boxVal, 0.05);
+//        float uniVal2 = opSmoothUnion(lineVal2, boxVal, 0.05);
+//        
+//        return min(uniVal1, uniVal2);
+//    }
     
     vec4 main(in vec2 fragCoord )
     {
